@@ -1,4 +1,4 @@
-module HomeHelper
+module ChangeMaker
   DENOM = {
     usd: {"quarter" => 25,
           "dime" => 10,
@@ -16,7 +16,7 @@ module HomeHelper
   }
 
 
-  def calculate_change(denomination, dollar_amount)
+  def self.calculate_change(denomination, dollar_amount)
     coin_hash = DENOM[denomination].clone
     coin_amounts = coin_hash.clone
     coin_amounts.each { |name, value| coin_amounts[name] = 0}
@@ -28,7 +28,7 @@ module HomeHelper
     coin_hash
   end
 
-  def format_dollar_input(input)
+  def self.format_dollar_input(input)
     if input.include?('.')
       input.gsub(/\D/, "").to_i
     else
@@ -36,7 +36,7 @@ module HomeHelper
     end
   end
 
-  def validate_dollar_input(input)
+  def self.validate_dollar_input(input)
     input.match(/^[$|€]?([0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$)|[.]\d{2}/)
   end
 end
