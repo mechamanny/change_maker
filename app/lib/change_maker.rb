@@ -1,6 +1,7 @@
 module ChangeMaker
   DENOM = {
-    usd: {"quarter" => 25,
+    usd: {"dollar" => 100,
+          "quarter" => 25,
           "dime" => 10,
           "nickel" => 5,
           "penny" => 1},
@@ -17,15 +18,10 @@ module ChangeMaker
 
 
   def self.calculate_change(denomination, dollar_amount)
-    coin_hash = DENOM[denomination].clone
-    coin_amounts = coin_hash.clone
-    coin_amounts.each { |name, value| coin_amounts[name] = 0}
-
-    coin_hash.reduce(dollar_amount) do |remaining_money, (name, coin_value)|
-      coin_hash[name] = remaining_money / coin_value
-      remaining_money % coin_value
+    DENOM[denomination].reduce({}) do |acc, (name, value)|
+      acc[name], dollar_amount = dollar_amount.divmod(value)
+      acc
     end
-    coin_hash
   end
 
   def self.format_dollar_input(input)
