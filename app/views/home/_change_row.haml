@@ -1,0 +1,5 @@
+.change-row
+  -if change_value
+    - change_value.each do |coin_type, number_of_coins|
+      %ul
+        %li= "#{coin_type.pluralize} => #{number_of_coins}"
