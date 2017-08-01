@@ -10,6 +10,8 @@ class HomeController < ApplicationController
       respond_to do |format|
         format.js
       end
+    else
+      redirect_to root_path, flash: {warning: "Incorrect form input: #{params[:money_value]}"}
     end
   end
 end
