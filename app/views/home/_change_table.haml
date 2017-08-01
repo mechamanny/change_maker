@@ -1,2 +1,4 @@
 #change-values
+  - if flash[:warning]
+    = render partial: 'form_error'
   = render partial: 'change_row', locals: {change_value: nil}

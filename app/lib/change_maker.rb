@@ -33,6 +33,6 @@ module ChangeMaker
   end
 
   def self.validate_dollar_input(input)
-    input.match(/^[$|€]?([0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$)|[.]\d{2}/)
+    input.match?(/^[$|€]?([0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$)|[.]{\d{2}/)
   end
 end
